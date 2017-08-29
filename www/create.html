@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#517aa0">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <title>Finance</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="user-view">
+                <img class="circle" src="img/splash.jpg">
+                <span class="name">John Doe</span>
+                <span class="email">jdandturk@gmail.com</span>
+            </div>
+        </li>
+
+        <li><a class="waves-effect" href="home.html">Home</a></li>
+        <li><a class="waves-effect" href="create.html">Create Report</a></li>
+        <li><a class="waves-effect" href="view.html">View Report</a></li>
+        <li><a class="waves-effect" href="approve.html">Approve Report<a></li>
+        <li><a class="waves-effect" href="#!">Settings</a></li>
+        <li><a class="waves-effect" href="index.html">Log Out</a></li>
+
+    </ul>
+
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="meduim material-icons">menu</i></a>
+            <a href="#" class="">Create Report</a>
+
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="#testa">Attendance</a></li>
+                <li class="tab"><a href="#testb">Finance</a></li>
+                <li class="tab"><a href="#testc">Others</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="testa" class="col s12">
+        <div class="container">
+            <form action="#">
+               
+                <p>
+                    <input type="checkbox" id="test1" />
+                    <label for="test1">Emannuuel Eze</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="test2" />
+                    <label for="test2">Owums Francis</label>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="test3" />
+                    <label for="test3">Emannuuel Eze</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="test4" />
+                    <label for="test4">Owums Francis</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="test5" />
+                    <label for="test5">Emannuuel Eze</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="test6" />
+                    <label for="test6">Owums Francis</label>
+                </p>
+            </form>
+        </div>
+    </div>
+    <div id="testb" class="col s12 test">
+        <form class="col s12">
+            <div class="row">
+                <li><a class="subheader">Income</a></li>
+                <div class="input-field col s12">
+                    <input id="investment" type="number" class="validate">
+                    <label for="investment" style="color:#517aa0;">Investment</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="other" type="number" class="validate">
+                    <label for="other" style="color:#517aa0;">Other Income</label>
+                </div>
+            </div>
+            <div class="row">
+                <li><a class="subheader">Vows</a></li>
+                <div class="col s9">
+                    <div class="input-field">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate">
+                        <label for="icon_telephone" style="color:#517aa0;">Telephone</label>
+                    </div>
+
+                    <div class="input-field">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input id="vow_amount" type="number" class="validate">
+                        <label for="vow_amount" style="color:#517aa0;">Amount</label>
+                    </div>
+                    <p>
+                        <input type="checkbox" id="testpaid" />
+                        <label for="testpaid">Paid</label>
+                    </p>
+                    <div id="vows"></div>
+                </div>
+                <div class="input-field col s3">
+                    <i class="medium material-icons" id="addMore">add</i>
+                </div>
+            </div>
+            <div class="row">
+                <li><a class="subheader">Expenses</a></li>
+                <div class="input-field col s12">
+                    <input id="refresh" type="number" class="validate">
+                    <label for="refresh" style="color:#517aa0;">Refreshment</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="venue" type="number" class="validate">
+                    <label for="venue" style="color:#517aa0;">Venue Rentals</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="hon" type="number" class="validate">
+                    <label for="hon" style="color:#517aa0;">Honorarium</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="misc" type="number" class="validate">
+                    <label for="misc" style="color:#517aa0;">Miscellaneous</label>
+                </div>
+
+            </div>
+            <div style="margin-bottom:80px;"></div>
+        </form>
+    </div>
+    <div id="testc" class="col s12 test">
+        <form class="col s12">
+            <div class="row">
+                <li><a class="subheader">Others</a></li>
+                <div class="input-field col s12">
+                    <input id="salvation" type="number" class="validate">
+                    <label for="salvation" style="color:#517aa0;">Salvation</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="reded" type="number" class="validate">
+                    <label for="reded" style="color:#517aa0;">Re-dedication</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="voice" type="number" class="validate">
+                    <label for="voice" style="color:#517aa0;">Voice Magazine</label>
+                </div>
+            </div>
+            <div style="margin-bottom:80px;"></div>
+        </form>
+    </div>
+
+    <div class="bottom-content">
+        <div class="container">
+  <select class="browser-default">
+      <option value="" disabled selected>Choose Event</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action">Save All
+                <i class="material-icons right">save</i>
+            </button>
+
+        </div>
+    </div>
+
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Initialize collapse button
+        $(".button-collapse").sideNav();
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        $('.collapsible').collapsible();
+
+        $(function () {
+            $("#addMore").click(function (e) {
+                e.preventDefault();
+                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">phone</i><input id=\"icon_telephone\" type=\"tel\" class=\"validate\"><label for=\"icon_telephone\" style=\"color:#517aa0;\">Telephone</label></div>");
+                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
+                $("#vows").append("<p><input type=\"checkbox\" id=\"testpaid\" /><label for=\"testpaid\">Paid</label></p>");
+                // $("#vows").append("");
+            });
+        });
+    </script>
+</body>
+
+</html>

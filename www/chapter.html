@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#517aa0">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <title>Finance</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home">
+    <div class="container">
+      <div class="row">
+       <img class="image" src="img/logo.png">
+     </div>
+       <div class="middle">
+        <div class="col s12">
+  <select class="browser-default">
+      <option value="" disabled selected>Choose Event</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+
+        </div>
+        <div class="col s12">
+            <div class="row">
+                <a class="waves-effect waves-light btn-large" href="create.html"><i class="material-icons left">chevron_right</i>Let's Go</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Initialize collapse button
+        $(".button-collapse").sideNav();
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        $('.collapsible').collapsible();
+
+        $(function () {
+            $("#addMore").click(function (e) {
+                e.preventDefault();
+                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">phone</i><input id=\"icon_telephone\" type=\"tel\" class=\"validate\"><label for=\"icon_telephone\" style=\"color:#517aa0;\">Telephone</label></div>");
+                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
+                $("#vows").append("<p><input type=\"checkbox\" id=\"testpaid\" /><label for=\"testpaid\">Paid</label></p>");
+                // $("#vows").append("");
+            });
+        });
+    </script>
+</body>
+
+</html>
