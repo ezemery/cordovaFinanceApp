@@ -15,9 +15,8 @@
     <ul id="slide-out" class="side-nav">
         <li>
             <div class="user-view">
-                <img class="circle" src="img/splash.jpg">
-                <span class="name">John Doe</span>
-                <span class="email">jdandturk@gmail.com</span>
+                <span class="name"></span>
+                <span class="email"><span>
             </div>
         </li>
 
@@ -33,7 +32,7 @@
     <nav class="nav-extended">
         <div class="nav-wrapper">
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="meduim material-icons">menu</i></a>
-            <a href="#" class="">Create Report</a>
+            <a href="#">Create Report</a>
 
         </div>
         <div class="nav-content">
@@ -46,33 +45,8 @@
     </nav>
     <div id="testa" class="col s12">
         <div class="container">
-            <form action="#">
-               
-                <p>
-                    <input type="checkbox" id="test1" />
-                    <label for="test1">Emannuuel Eze</label>
-                </p>
-                <p>
-                    <input type="checkbox" id="test2" />
-                    <label for="test2">Owums Francis</label>
-                </p>
-
-                <p>
-                    <input type="checkbox" id="test3" />
-                    <label for="test3">Emannuuel Eze</label>
-                </p>
-                <p>
-                    <input type="checkbox" id="test4" />
-                    <label for="test4">Owums Francis</label>
-                </p>
-                <p>
-                    <input type="checkbox" id="test5" />
-                    <label for="test5">Emannuuel Eze</label>
-                </p>
-                <p>
-                    <input type="checkbox" id="test6" />
-                    <label for="test6">Owums Francis</label>
-                </p>
+            <form id="attendance">
+               <div class="attend"></div>
             </form>
         </div>
     </div>
@@ -159,14 +133,11 @@
 
     <div class="bottom-content">
         <div class="container">
-  <select class="browser-default">
+  <select class="browser-default" id="events">
       <option value="" disabled selected>Choose Event</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
     </select>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Save All
+            <button id="save" class="btn waves-effect waves-light" type="submit" name="action">Save All
                 <i class="material-icons right">save</i>
             </button>
 
@@ -178,11 +149,80 @@
     <script src="js/materialize.min.js"></script>
     <script src="js/script.js"></script>
     <script>
-        // Initialize collapse button
+                // Initialize collapse button
         $(".button-collapse").sideNav();
         // Initialize collapsible (uncomment the line below if you use the dropdown variation)
         $('.collapsible').collapsible();
 
+        var member = JSON.parse(localStorage.getItem("chapterMembers"));
+
+        for(var i = 0; i < member.length; i++){
+            $(".attend").append("<p>" + "<input type=\"checkbox\" " +"name=\"attendance\""+ "id=\"" + member[i].id + "\"/> <label for=\"" +  member[i].id + "\">" + member[i].name+ "</label></p>");
+        }
+        var data = {
+            "chapterId":localStorage.getItem("eventId")
+        }
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://192.168.0.43/api/v1/getEvents",
+            data:JSON.stringify(data),
+            processData: true,
+            dataType: "json"
+        }).done(successFn).fail(errorFn);
+        //This function check the response from the server and looks 
+        //for a token field, if token id found it stores the token in
+        //local storage else it returns an error.      
+        function successFn(result) {
+            for (var elm in result) {
+                    events.push(result[elm]);
+                }
+            localStorage.setItem('theEvents', JSON.stringify(events[0]));
+        };
+        //if there is an error in the ajax request display the error
+        function errorFn(xhr, status, strErr) {
+            alert("Something went wrong, Could not retrieve Events");
+        };
+        
+        var localEvents = JSON.parse(localStorage.getItem("theEvents"));
+
+            for(var i = 0; i < localEvents.length; i++){
+            $("#events").append("<option value=\"" + localEvents[i].eventsId + "\">" + localEvents[i].title + "</option>"); 
+        }
+        
+        $("#save").click(function(e){
+            e.preventDefault();
+            var eventID = $("#events").val(); 
+            var favorite = [];
+            $.each($("input[name='attendance']:checked"), function(){            
+                favorite.push($(this).attr('id'));
+            });
+            var attendance = favorite.join(", ");
+            console.log(attendance);
+            
+            var values = {
+                "eventId" : eventID,
+                "attendance": attendance
+            };
+                $.ajax({
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://192.168.0.43/api/v1/postAttendance",
+            data:JSON.stringify(values),
+            processData: true,
+            dataType: "json"
+        }).done(successFn).fail(errorFn);
+        //This function check the response from the server and looks 
+        //for a token field, if token id found it stores the token in
+        //local storage else it returns an error.      
+        function successFn(result) {
+            alert("Succesfully submitted attendance")
+        };
+        //if there is an error in the ajax request display the error
+        function errorFn(xhr, status, strErr) {
+            alert("Something prevented Submission");
+        };
+        })
         $(function () {
             $("#addMore").click(function (e) {
                 e.preventDefault();

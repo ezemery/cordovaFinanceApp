@@ -13,44 +13,75 @@
 
 <body class="home">
     <div class="container">
-      <div class="row">
-       <img class="image" src="img/logo.png">
-     </div>
-       <div class="middle">
-        <div class="col s12">
-  <select class="browser-default">
-      <option value="" disabled selected>Choose Event</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-
-        </div>
-        <div class="col s12">
-            <div class="row">
-                <a class="waves-effect waves-light btn-large" href="create.html"><i class="material-icons left">chevron_right</i>Let's Go</a>
+        <div class="middle">
+           <div> 
+           <h3>Welcome</h3>
+           <h5 class="name"></h5>
+           </div>
+            <div class="col s12">
+            <select id="select" class="browser-default">
+                <option>Please select a chapter</option>
+            </select>
             </div>
+            <a id="go" class="waves-effect waves-light btn pad">Go</a>
         </div>
-      </div>
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/script.js"></script>
     <script>
-        // Initialize collapse button
-        $(".button-collapse").sideNav();
-        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-        $('.collapsible').collapsible();
 
-        $(function () {
-            $("#addMore").click(function (e) {
-                e.preventDefault();
-                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">phone</i><input id=\"icon_telephone\" type=\"tel\" class=\"validate\"><label for=\"icon_telephone\" style=\"color:#517aa0;\">Telephone</label></div>");
-                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
-                $("#vows").append("<p><input type=\"checkbox\" id=\"testpaid\" /><label for=\"testpaid\">Paid</label></p>");
-                // $("#vows").append("");
-            });
+        $("document").ready(function(){
+            
+            for(var i = 0; i < chapters.length; i++){
+            $("#select").append("<option value=\"" + chapters[i].chapterId + "\">" + chapters[i].chName + "</option>");   
+        
+        
+        $("#go").click(function(){
+            
+            var value = $("select").val();
+            localStorage.setItem("eventId",value);
+            
+            var data = {
+                "chapterId":value
+            }
+             $(document).ajaxStart(function () {
+            $("#go").addClass("loading");
+            console.log("Ajax Request is Starting");
+        });
+        // Ajax stop global function
+        $(document).ajaxStop(function () {
+            $("#go").removeClass("loading");
+            console.log("Ajax Request has ended");
+        });
+            
+            $.ajax({
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://192.168.0.43/api/v1/getMembers",
+            data:JSON.stringify(data),
+            processData: true,
+            dataType: "json"
+        }).done(successFn).fail(errorFn);
+        //This function check the response from the server and looks 
+        //for a token field, if token id found it stores the token in
+        //local storage else it returns an error.      
+        function successFn(result) {
+            for (var elm in result) {
+                    members.push(result[elm]);
+                }
+            localStorage.setItem('chapterMembers', JSON.stringify(members[0]));
+            location.href = "home.html";
+        };
+        //if there is an error in the ajax request display the error
+        function errorFn(xhr, status, strErr) {
+            alert("Something went wrong, maybe server error");
+        };
+            
+        });
+            
+        
         });
     </script>
 </body>

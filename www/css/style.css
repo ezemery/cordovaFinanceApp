@@ -1,6 +1,14 @@
 body{
     width:100vw !important;
     height:100vh !important;
+    text-align: center;
+}
+
+h5,h3{
+     color:#fff;
+}
+p.black{
+    color:#000;
 }
 body.home{
     background: url("../img/splash.jpg") no-repeat;
@@ -14,6 +22,9 @@ body.home a[class*="btn"]{
     width:70%;
     height: auto;
     margin:50px 15%;
+}
+.pad{
+    margin-top:20px;
 }
 a.forget{
     color:#fff;

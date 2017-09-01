@@ -1,81 +1,99 @@
-  // Initialize collapse button
-var eze = "me";
-      
-      var response = [];
-      
-      $(".button-collapse").sideNav();
-    
-      $("#send").click(function () {
-          //assign variables to  email and password values
-          var email = $("#email").val();
-          var password = $("#password").val()
+//if (typeof localStorage.getItem("token") !== "string") {
+//    window.location = "index.html";
+//
+//}
+//This is the response variable to store the json response object 
+var response = [];
+var chapterId = [];
+var members = [];
+var events = [];
 
-          if ((email.length || password.length) == 0) {
-              alert("Fields cannot be empty");
-          } else {
-              
-              var data = {
-                  "email": email,
-                  "password": password
-              };
-              
-              $(document).ajaxStart(function () {
-                  $("#send").addClass("loading");
-                  console.log("Ajax Request is Starting");
-              });
+var chapters = JSON.parse(localStorage.getItem("chapters"));
+var token = JSON.parse(localStorage.getItem("token"));
 
-              $(document).ajaxStop(function () {
-                  $("#send").removeClass("loading");
-                  console.log("Ajax Request has ended");
-              });
+$(".name").append(token[0].name)
+$(".user-view .name").append(token[0].name);
+$(".user-view .email").append(token[0].email);
 
-              $.ajax({
-                      type: "POST",
-                      contentType: 'application/json; charset=UTF-8',
-                      url: "http://192.168.0.43/api/v1/login",
-                      data: JSON.stringify(data),
-                      processData: true,
-                      dataType: "json"
-                  }).done(successFn).fail(errorFn);
+// Initialize collapse button
+$(".button-collapse").sideNav();
 
-              function successFn(result) {
-                  var resultString = JSON.stringify(result)
-                    if(resultString.indexOf("token") >=0){
-                        response.push(result);
-                        alert("You have successfully been logged in");
-                        localStorage.setItem('token', response[0].User.token );
-                        window.location = "chapter.html"
-                    }else{
-                       alert("Username or Password Incorrect");
-                    }
-              };
+//When a user clicks the send button this code grabs the information
+//submits to the server and return a json object via ajax request
 
-              function errorFn(xhr, status, strErr) {
-                  alert("Something went wrong " + strErr);
-              };
-          };
-      });
+$("#send").click(function () {
+    //assign variables to  email and password values
+    var email = $("#email").val();
+    var password = $("#password").val()
+        //Check for empty fields
+    if ((email.length || password.length) == 0) {
+        alert("Fields cannot be empty");
+    } else {
+        //store fields in object for use in the ajax request
+        var data = {
+            "email": email,
+            "password": password
+        };
+        // Ajax start global function
+        $(document).ajaxStart(function () {
+            $("#send").addClass("loading");
+            console.log("Ajax Request is Starting");
+        });
+        // Ajax stop global function
+        $(document).ajaxStop(function () {
+            $("#send").removeClass("loading");
+            console.log("Ajax Request has ended");
+        });
+        // Ajax request
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://192.168.0.43/api/v1/login",
+            data: JSON.stringify(data),
+            processData: true,
+            dataType: "json"
+        }).done(successFn).fail(errorFn);
+        //This function check the response from the server and looks 
+        //for a token field, if token id found it stores the token in
+        //local storage else it returns an error.      
+        function successFn(result) {
+            var resultString = JSON.stringify(result)
+            if (resultString.indexOf("token") >= 0) {
+                for (var elm in result) {
+                    response.push(result[elm]);
+                }
+                alert("You have successfully been logged in");
+                localStorage.setItem('token', JSON.stringify(response[0]));
+                localStorage.setItem('chapters', JSON.stringify(response[1]));
+                window.location = "chapter.html"
+            } else {
+                alert("Username or Password Incorrect");
+            }
+        };
+        //if there is an error in the ajax request display the error
+        function errorFn(xhr, status, strErr) {
+            alert(strErr + status + "Something went wrong ");
+        };
+    };
+});
 
-      //      $.ajax({
-      //              type: "POST",
-      //              contentType: 'application/json; charset=UTF-8',
-      //              url: "http://192.168.0.43/api/v1/getMembers",
-      //              data: JSON.stringify(data),
-      //              processData: true
-      //          }).done(successFn).fail(errorFn)
-      //          .always(function (data, textStatus, jqXHR) {
-      //              console.log("The request was completed");
-      //          });
-      //
-      //      function successFn(result) {
-      //          var response = JSON.parse(result);
-      //          for (var i; i < response.length; i++){
-      //              console.log(response.length);
-      //              console.log(response[i]);
-      //          }
-      //          console.log(response);
-      //      };
-      //
-      //      function errorFn(xhr, status, strErr) {
-      //          console.log(xhr + strErr + " Something went wrong");
-      //      };
+var data = {
+    "User": [
+        {
+            "id": "2",
+            "name": "Emmanuel Eze",
+            "email": "emereuwaonueze@gmail.com ",
+            "token": "561be8e62158778f0a78c07473b00bdd"
+        }
+    ],
+    "Chapters": [
+        {
+            "chapterId": "7",
+            "chName": "Surulere Rehoboth Chapter"
+        },
+        {
+            "chapterId": "11",
+            "chName": "Aguda Executive Chapter"
+        }
+    ]
+}
