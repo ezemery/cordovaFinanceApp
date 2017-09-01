@@ -8,7 +8,9 @@
     <title>Finance</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
+     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -43,6 +45,7 @@
             </ul>
         </div>
     </nav>
+    <div class="col s12">
     <div id="testa" class="col s12">
         <div class="container">
             <form id="attendance">
@@ -64,30 +67,47 @@
                 </div>
             </div>
             <div class="row">
-                <li><a class="subheader">Vows</a></li>
+               <li><a class="subheader">Outstandings</a></li> 
+               <div class="col s12">
+                   <div class="owl-carousel owl-theme">
+                    <div class="item"><h4>Outstandings 1</h4></div>
+                    <div class="item"><h4>Outstandings 2</h4></div>
+                    <div class="item"><h4>Outstandings 3</h4></div>
+                    <div class="item"><h4>Outstandings 4</h4></div>
+                    <div class="item"><h4>Outstandings 5</h4></div>
+                </div>
+               </div>
+            </div>
+            
+            <div class="row">
+                <li><a class="subheader">Add Vows/Donations</a></li>
                 <div class="col s9">
-                    <div class="input-field">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate">
-                        <label for="icon_telephone" style="color:#517aa0;">Telephone</label>
-                    </div>
+                    <select id="select" class="browser-default">
+                <option>Please select a member</option>
+            </select>
 
                     <div class="input-field">
                         <i class="material-icons prefix">monetization_on</i>
                         <input id="vow_amount" type="number" class="validate">
                         <label for="vow_amount" style="color:#517aa0;">Amount</label>
                     </div>
-                    <p>
-                        <input type="checkbox" id="testpaid" />
-                        <label for="testpaid">Paid</label>
+                    <p>Fulfullment Date:
+                        <input type="text" class="datepicker">
                     </p>
-                    <div id="vows"></div>
+                    <div id="vows">
+                    <div style="margin-bottom:100px;"></div>
+                    </div>
+                    
                 </div>
                 <div class="input-field col s3">
                     <i class="medium material-icons" id="addMore">add</i>
                 </div>
             </div>
-            <div class="row">
+        </form>
+    </div>
+    <div id="testc" class="col s12 test">
+        <form class="col s12">
+           <div class="row">
                 <li><a class="subheader">Expenses</a></li>
                 <div class="input-field col s12">
                     <input id="refresh" type="number" class="validate">
@@ -107,11 +127,6 @@
                 </div>
 
             </div>
-            <div style="margin-bottom:80px;"></div>
-        </form>
-    </div>
-    <div id="testc" class="col s12 test">
-        <form class="col s12">
             <div class="row">
                 <li><a class="subheader">Others</a></li>
                 <div class="input-field col s12">
@@ -127,10 +142,11 @@
                     <label for="voice" style="color:#517aa0;">Voice Magazine</label>
                 </div>
             </div>
+                        
             <div style="margin-bottom:80px;"></div>
         </form>
     </div>
-
+    </div>
     <div class="bottom-content">
         <div class="container">
   <select class="browser-default" id="events">
@@ -147,8 +163,29 @@
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
     <script src="js/script.js"></script>
     <script>
+        //start owl carousel codes
+        $('.owl-carousel').owlCarousel({
+    stagePadding: 50,
+    loop:true,
+    margin:10,
+    nav:false,
+    dots:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+        //End owl carousel codes
                 // Initialize collapse button
         $(".button-collapse").sideNav();
         // Initialize collapsible (uncomment the line below if you use the dropdown variation)
@@ -177,6 +214,7 @@
             for (var elm in result) {
                     events.push(result[elm]);
                 }
+            //Push the ajax result to an array and store in local storage for latter access in files
             localStorage.setItem('theEvents', JSON.stringify(events[0]));
         };
         //if there is an error in the ajax request display the error
@@ -223,16 +261,28 @@
         function errorFn(xhr, status, strErr) {
             alert("Something prevented Submission");
         };
-        })
+        });
+        
         $(function () {
             $("#addMore").click(function (e) {
                 e.preventDefault();
-                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">phone</i><input id=\"icon_telephone\" type=\"tel\" class=\"validate\"><label for=\"icon_telephone\" style=\"color:#517aa0;\">Telephone</label></div>");
-                $("#vows").append("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
-                $("#vows").append("<p><input type=\"checkbox\" id=\"testpaid\" /><label for=\"testpaid\">Paid</label></p>");
+                $("#vows").prepend("<p>Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
+                $("#vows").prepend("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
+                $("#vows").prepend("<select id=\"select\" class=\"browser-default\"><option>Please select a member</option></select>");
+                
+                
                 // $("#vows").append("");
             });
         });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+          });
+
     </script>
 </body>
 
