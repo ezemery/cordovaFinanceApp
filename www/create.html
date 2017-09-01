@@ -187,12 +187,13 @@
         var localEvents = JSON.parse(localStorage.getItem("theEvents"));
 
             for(var i = 0; i < localEvents.length; i++){
-            $("#events").append("<option value=\"" + localEvents[i].eventsId + "\">" + localEvents[i].title + "</option>"); 
+            $("#events").append("<option value=\"" + localEvents[i].eventId + "\">" + localEvents[i].title + "</option>"); 
         }
         
         $("#save").click(function(e){
             e.preventDefault();
-            var eventID = $("#events").val(); 
+            var eventID = $("#events").val();
+            console.log(eventID)
             var favorite = [];
             $.each($("input[name='attendance']:checked"), function(){            
                 favorite.push($(this).attr('id'));
@@ -216,7 +217,7 @@
         //for a token field, if token id found it stores the token in
         //local storage else it returns an error.      
         function successFn(result) {
-            alert("Succesfully submitted attendance")
+         alert("Values have been Saved");
         };
         //if there is an error in the ajax request display the error
         function errorFn(xhr, status, strErr) {
