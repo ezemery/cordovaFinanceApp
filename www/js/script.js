@@ -11,7 +11,7 @@ var events = [];
 var chapters = JSON.parse(localStorage.getItem("chapters"));
 var token = JSON.parse(localStorage.getItem("token"));
 
-$(".name").append(token[0].name)
+$(".welcome-name").append(token[0].name)
 $(".user-view .name").append(token[0].name);
 $(".user-view .email").append(token[0].email);
 
@@ -24,7 +24,7 @@ $(".button-collapse").sideNav();
 $("#send").click(function () {
     //assign variables to  email and password values
     var email = $("#email").val();
-    var password = $("#password").val()
+    var password = $("#password").val();
         //Check for empty fields
     if ((email.length || password.length) == 0) {
         alert("Fields cannot be empty");

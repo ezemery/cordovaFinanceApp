@@ -26,6 +26,10 @@ body.home a[class*="btn"]{
 .pad{
     margin-top:20px;
 }
+
+ul[class^="collapsible"]{
+    margin-bottom: 80px;
+}
 a.forget{
     color:#fff;
     display: block;
@@ -34,6 +38,7 @@ a.forget{
 .item{
     background: #f1f1f1;
     padding:20px;
+    border:1px solid #000;
 }
 
 .test li{
@@ -41,7 +46,7 @@ a.forget{
     list-style: none;
     background: #f1f1f1;
 }
-.test li a.subheader{
+.test li a{
     display: block;
     color: #000;
     padding: 20px;

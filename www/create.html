@@ -8,7 +8,7 @@
     <title>Finance</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
-     <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -26,7 +26,7 @@
         <li><a class="waves-effect" href="create.html">Create Report</a></li>
         <li><a class="waves-effect" href="view.html">View Report</a></li>
         <li><a class="waves-effect" href="approve.html">Approve Report<a></li>
-        <li><a class="waves-effect" href="#!">Settings</a></li>
+        <li><a class="waves-effect" href="#!">Add Members</a></li>
         <li><a class="waves-effect" href="index.html">Log Out</a></li>
 
     </ul>
@@ -46,45 +46,65 @@
         </div>
     </nav>
     <div class="col s12">
+   <form>
     <div id="testa" class="col s12">
         <div class="container">
-            <form id="attendance">
                <div class="attend"></div>
-            </form>
+            
         </div>
     </div>
+    
+   
+
     <div id="testb" class="col s12 test">
-        <form class="col s12">
-            <div class="row">
-                <li><a class="subheader">Income</a></li>
-                <div class="input-field col s12">
+        
+             <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+              <a>Income</a>
+          </div>
+          <div class="collapsible-body">
+               <div class="input-field col s12">
                     <input id="investment" type="number" class="validate">
                     <label for="investment" style="color:#517aa0;">Investment</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="other" type="number" class="validate">
+                    <input id="other_income" type="number" class="validate">
                     <label for="other" style="color:#517aa0;">Other Income</label>
                 </div>
-            </div>
-            <div class="row">
-               <li><a class="subheader">Outstandings</a></li> 
-               <div class="col s12">
-                   <div class="owl-carousel owl-theme">
-                    <div class="item"><h4>Outstandings 1</h4></div>
-                    <div class="item"><h4>Outstandings 2</h4></div>
-                    <div class="item"><h4>Outstandings 3</h4></div>
-                    <div class="item"><h4>Outstandings 4</h4></div>
-                    <div class="item"><h4>Outstandings 5</h4></div>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <a>Outstandings</a>
+          </div>
+          <div class="collapsible-body">
+                            <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item">
+                            <h4>Outstandings 1</h4></div>
+                        <div class="item">
+                            <h4>Outstandings 2</h4></div>
+                        <div class="item">
+                            <h4>Outstandings 3</h4></div>
+                        <div class="item">
+                            <h4>Outstandings 4</h4></div>
+                        <div class="item">
+                            <h4>Outstandings 5</h4></div>
+                    </div>
                 </div>
-               </div>
-            </div>
-            
-            <div class="row">
-                <li><a class="subheader">Add Vows/Donations</a></li>
-                <div class="col s9">
-                    <select id="select" class="browser-default">
-                <option>Please select a member</option>
-            </select>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <a>Add Vows</a>
+          </div>
+          <div class="collapsible-body">
+                           <div class="row">
+                            <div class="col s9">
+                    <select id="vow" class="browser-default vow-added">
+                        <option>Please select a member</option>
+                    </select>
 
                     <div class="input-field">
                         <i class="material-icons prefix">monetization_on</i>
@@ -95,63 +115,108 @@
                         <input type="text" class="datepicker">
                     </p>
                     <div id="vows">
-                    <div style="margin-bottom:100px;"></div>
+                        <div style="margin-bottom:10px;"></div>
                     </div>
-                    
+
                 </div>
                 <div class="input-field col s3">
-                    <i class="medium material-icons" id="addMore">add</i>
+                    <i class="medium material-icons" id="addVow">add</i>
                 </div>
-            </div>
-        </form>
-    </div>
-    <div id="testc" class="col s12 test">
-        <form class="col s12">
-           <div class="row">
-                <li><a class="subheader">Expenses</a></li>
+                </div>
+
+          </div>
+        </li>
+            <li>
+          <div class="collapsible-header">
+            <a>Add Donations</a>
+          </div>
+          <div class="collapsible-body">
+                           <div class="row">
+                            <div class="col s9">
+                    <select id="donation" class="browser-default donation-added">
+                        <option>Please select a member</option>
+                    </select>
+
+                    <div class="input-field">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input id="donation_amount" type="number" class="validate">
+                        <label for="donation_amount" style="color:#517aa0;">Amount</label>
+                    </div>
+                    <p>Fulfullment Date:
+                        <input type="text" class="datepicker">
+                    </p>
+                    <div id="donations">
+                        <div style="margin-bottom:10px;"></div>
+                    </div>
+
+                </div>
+                <div class="input-field col s3">
+                    <i class="medium material-icons" id="addDonation">add</i>
+                </div>
+                </div>
+
+          </div>
+        </li>
+        <li>
+      <div class="collapsible-header">
+      <a>Other Income</a>
+      </div>
+      <div class="collapsible-body">
                 <div class="input-field col s12">
-                    <input id="refresh" type="number" class="validate">
-                    <label for="refresh" style="color:#517aa0;">Refreshment</label>
+                    <input id="salvation" type="number" class="validate">
+                    <label for="salvation" style="color:#517aa0;">Salvation</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="rededication" type="number" class="validate">
+                    <label for="rededication" style="color:#517aa0;">Re-dedication</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="voice" type="number" class="validate">
+                    <label for="voice" style="color:#517aa0;">Voice Magazine</label>
+                </div>
+      </div>
+    </li>
+
+    </ul>
+       </div>
+    <div id="testc" class="col s12 test">
+       <ul class="collapsible-2" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+          <a>Expenses</a>
+      </div>
+      <div class="collapsible-body">
+       <div class="input-field col s12">
+                    <input id="refreshment" type="number" class="validate">
+                    <label for="refreshment" style="color:#517aa0;">Refreshment</label>
                 </div>
                 <div class="input-field col s12">
                     <input id="venue" type="number" class="validate">
                     <label for="venue" style="color:#517aa0;">Venue Rentals</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="hon" type="number" class="validate">
-                    <label for="hon" style="color:#517aa0;">Honorarium</label>
+                    <input id="hono" type="number" class="validate">
+                    <label for="hono" style="color:#517aa0;">Honorarium</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="misc" type="number" class="validate">
-                    <label for="misc" style="color:#517aa0;">Miscellaneous</label>
-                </div>
-
-            </div>
-            <div class="row">
-                <li><a class="subheader">Others</a></li>
-                <div class="input-field col s12">
-                    <input id="salvation" type="number" class="validate">
-                    <label for="salvation" style="color:#517aa0;">Salvation</label>
+                    <input id="publication" type="number" class="validate">
+                    <label for="publication" style="color:#517aa0;">Publication</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="reded" type="number" class="validate">
-                    <label for="reded" style="color:#517aa0;">Re-dedication</label>
+                    <input id="other_expenses" type="number" class="validate">
+                    <label for="other_expenses" style="color:#517aa0;">Other_expenses</label>
                 </div>
-                <div class="input-field col s12">
-                    <input id="voice" type="number" class="validate">
-                    <label for="voice" style="color:#517aa0;">Voice Magazine</label>
-                </div>
-            </div>
-                        
-            <div style="margin-bottom:80px;"></div>
-        </form>
+      </div>
+    </li>
+  </ul>
     </div>
+    </form>
     </div>
     <div class="bottom-content">
         <div class="container">
-  <select class="browser-default" id="events">
-      <option value="" disabled selected>Choose Event</option>
-    </select>
+            <select class="browser-default" id="events">
+                <option value="" disabled selected>Choose Event</option>
+            </select>
 
             <button id="save" class="btn waves-effect waves-light" type="submit" name="action">Save All
                 <i class="material-icons right">save</i>
@@ -168,42 +233,66 @@
     <script>
         //start owl carousel codes
         $('.owl-carousel').owlCarousel({
-    stagePadding: 50,
-    loop:true,
-    margin:10,
-    nav:false,
-    dots:false,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5
-        }
-    }
-})
+                stagePadding: 50,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 5
+                    }
+                }
+            })
         //End owl carousel codes
-                // Initialize collapse button
+        
+        // Initialize collapse button
         $(".button-collapse").sideNav();
-        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        
+        // Initialize collapsible 
         $('.collapsible').collapsible();
+        $('.collapsible-2').collapsible();
+  
+        /*
+        Grab Data for Members and insert to HTMl
+        */
 
         var member = JSON.parse(localStorage.getItem("chapterMembers"));
 
-        for(var i = 0; i < member.length; i++){
-            $(".attend").append("<p>" + "<input type=\"checkbox\" " +"name=\"attendance\""+ "id=\"" + member[i].id + "\"/> <label for=\"" +  member[i].id + "\">" + member[i].name+ "</label></p>");
+        for (var i = 0; i < member.length; i++) {
+            $(".attend").append("<p>" + "<input type=\"checkbox\" " + "name=\"attendance\"" + "id=\"" + member[i].id + "\"/> <label for=\"" + member[i].id + "\">" + member[i].name + "</label></p>");
         }
-        var data = {
-            "chapterId":localStorage.getItem("eventId")
+        
+        for(var i = 0; i < member.length; i++){
+            $("#vow").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
+        
+            };
+        for(var i = 0; i < member.length; i++){
+            $("#donation").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
+        
+            };
+        /*
+         End Grab Data for Members and insert to HTMl
+        */
+        
+        /*
+        Begin Pulling Data for Events
+        */
+        var eventData = {
+            "chapterId": localStorage.getItem("eventId")
+            //Gets the event for the meeting ie chapter meeting etc
         }
         $.ajax({
             type: "POST",
             contentType: 'application/json; charset=UTF-8',
             url: "http://192.168.0.43/api/v1/getEvents",
-            data:JSON.stringify(data),
+            data: JSON.stringify(eventData),
             processData: true,
             dataType: "json"
         }).done(successFn).fail(errorFn);
@@ -212,8 +301,8 @@
         //local storage else it returns an error.      
         function successFn(result) {
             for (var elm in result) {
-                    events.push(result[elm]);
-                }
+                events.push(result[elm]);
+            }
             //Push the ajax result to an array and store in local storage for latter access in files
             localStorage.setItem('theEvents', JSON.stringify(events[0]));
         };
@@ -221,59 +310,183 @@
         function errorFn(xhr, status, strErr) {
             alert("Something went wrong, Could not retrieve Events");
         };
-        
+
         var localEvents = JSON.parse(localStorage.getItem("theEvents"));
 
-            for(var i = 0; i < localEvents.length; i++){
-            $("#events").append("<option value=\"" + localEvents[i].eventId + "\">" + localEvents[i].title + "</option>"); 
+        for (var i = 0; i < localEvents.length; i++) {
+            $("#events").append("<option value=\"" + localEvents[i].eventId + "\">" + localEvents[i].title + "</option>");
         }
         
-        $("#save").click(function(e){
+        /*
+        End Pulling Data for Events
+        */
+        
+        /*
+        Process form Data when submit button is clicked
+        */
+        $("#save").click(function (e) {
+            // prevent normal form submission
             e.preventDefault();
+            
+            //grab event ID
             var eventID = $("#events").val();
-            console.log(eventID)
-            var favorite = [];
-            $.each($("input[name='attendance']:checked"), function(){            
-                favorite.push($(this).attr('id'));
+            
+            // process array of checked attendance in form
+            var attendees = [];
+            $.each($("input[name='attendance']:checked"), function () {
+                attendees.push($(this).attr('id'));
             });
-            var attendance = favorite.join(", ");
+            var attendance = attendees.join(", ");
             console.log(attendance);
             
-            var values = {
-                "eventId" : eventID,
+           // end process array of checked attendance in form
+            
+            //process finances
+            var vows = [];
+            $.each($("input[id='vow_amount']"),function(){
+                vows.push($(this).val());
+            });
+            var allVows = vows.join(", ");
+            
+            var donations = [];
+            $.each($("input[id='donation_amount']"),function(){
+                donations.push($(this).val());
+            });
+            var allDonation = donations.join(", ");
+            
+            var investment= $("#investment").val();
+            var other_income = $("#other_income").val();
+            var salvation = $("#salvation").val();
+            var rededication = $("#rededication").val();
+            var voice = $("#voice").val();
+            var refreshment = $("#refreshment").val();
+            var venue = $("#venue").val();
+            var hono = $("#hono").val();
+            var publication = $("#publication").val();
+            var other_expenses = $("#other_expenses").val();
+            
+
+            var vowProfileId = [];            
+            $.each($("select.vow-added"),function(){
+                vowProfileId.push($(this).val());
+            });
+            
+            var vowProfiles = vowProfileId.join(", ");
+            
+             var donationProfileId = [];            $.each($("select.donation-added"),function(){
+                donationProfileId.push($(this).val());
+            });
+            
+            var donationProfiles = donationProfileId.join(", ");
+            //End process finances
+            
+            
+            // build the ajax data value
+            var attendances = {
+                "eventId": eventID,
                 "attendance": attendance
             };
-                $.ajax({
-            type: "POST",
-            contentType: 'application/json; charset=UTF-8',
-            url: "http://192.168.0.43/api/v1/postAttendance",
-            data:JSON.stringify(values),
-            processData: true,
-            dataType: "json"
-        }).done(successFn).fail(errorFn);
-        //This function check the response from the server and looks 
-        //for a token field, if token id found it stores the token in
-        //local storage else it returns an error.      
-        function successFn(result) {
-         alert("Values have been Saved");
-        };
-        //if there is an error in the ajax request display the error
-        function errorFn(xhr, status, strErr) {
-            alert("Something prevented Submission");
-        };
+            
+            //build the finances data value
+            var financials = {
+                "investments":investment,
+                "pledges_made":{
+                    "profileId":vowProfiles,
+                    "amount":allVows,
+                    "type":"Bus levy",
+                    "project_id":1,
+                    "expected_fulfil_date":"December"  
+                },
+                "pledges_paid":{
+                    "pledge_id":1,
+                    "amount_paid":400
+                },
+                "donations":{
+                    "profileId":donationProfiles,
+                    "amount":allDonation,
+                    "project_id":1
+                },
+                "income_from_publication":publication,
+                "other_income":other_income,
+                "venue_rental":venue,
+                "refreshment":refreshment,
+                "honorarium":hono,
+                "other_expenses":other_expenses
+            }
+            console.log(financials);
+            $.when(
+            // Deferred object, ajax request 
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json; charset=UTF-8',
+                url: "http://192.168.0.43/api/v1/postAttendance",
+                data: JSON.stringify(attendances),
+                processData: true,
+                dataType: "json"
+            }),
+            // Deferred object, ajax request
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json; charset=UTF-8',
+                url: "http://192.168.0.43/api/v1/postFinancials",
+                data: JSON.stringify(financials),
+                processData: true,
+                dataType: "json"
+            })
+
+            ).then(allPassed, someFailed);            
+            function allPassed(result) {
+                alert("Saved was successful");
+            };
+            function someFailed(xhr, status, strErr) {
+                alert(strErr);
+            };
+            
+            /*            function successFn(result) {
+                alert("Attendance Has been Inserted");
+            };
+            function errorFn(xhr, status, strErr) {
+                alert("Something prevented Attendance from inserting");
+            };
+*/
         });
+
         
+        /*
+        appending values to the form on clicking the plus sign
+        */
         $(function () {
-            $("#addMore").click(function (e) {
+            //var j = 0;
+            $("#addVow").click(function (e) {
                 e.preventDefault();
-                $("#vows").prepend("<p>Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
+                $("#vows").prepend("<p class=\"vow\" "+">Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
                 $("#vows").prepend("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
-                $("#vows").prepend("<select id=\"select\" class=\"browser-default\"><option>Please select a member</option></select>");
+                $("#vows").prepend("<select id=\"vow-added\" class=\"browser-default vow-added\"><option>Please select a member</option></select>");
                 
-                
-                // $("#vows").append("");
+                for(var i = 0; i < member.length; i++){
+                $("#vow-added").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
+
+                };    
             });
         });
+        
+                $(function () {
+            //var j = 0;
+            $("#addDonation").click(function (e) {
+                e.preventDefault();
+                $("#donations").prepend("<p class=\"vow\" "+">Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
+                $("#donations").prepend("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"donation_amount\" type=\"number\" class=\"validate\"><label for=\"donation_amount\" style=\"color:#517aa0;\">Amount</label></div>");
+                $("#donations").prepend("<select id=\"donation-added\"  class=\"browser-default donation-added\"><option>Please select a member</option></select>");
+                
+                for(var i = 0; i < member.length; i++){
+                $("#donation-added").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
+
+                };    
+            });
+        });
+
+        
+        
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -281,8 +494,7 @@
             clear: 'Clear',
             close: 'Ok',
             closeOnSelect: false // Close upon selecting a date,
-          });
-
+        });
     </script>
 </body>
 
