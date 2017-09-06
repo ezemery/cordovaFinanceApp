@@ -1,12 +1,12 @@
 {
-    "name": "com.example.finance",
-    "displayName": "FinanceApp",
+    "name": "com.example.ogbako",
+    "displayName": "ogbako",
     "version": "1.0.0",
-    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "description": "Ogbako is a finance application for collection of donations, pledges and attendance at church gatherings",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Apache Cordova Team",
+    "author": "emereuwaonueze@gmail.com",
     "license": "Apache-2.0"
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#517aa0">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
-    <title>Finance</title>
+    <title>Ogbako</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -22,7 +22,7 @@
             </div>
         </li>
 
-        <li><a class="waves-effect" href="home.html">Home</a></li>
+        <li><a class="waves-effect" href="chapter.html">Home</a></li>
         <li><a class="waves-effect" href="create.html">Create Report</a></li>
         <li><a class="waves-effect" href="view.html">View Report</a></li>
         <li><a class="waves-effect" href="approve.html">Approve Report<a></li>
@@ -76,10 +76,11 @@
         </li>
         <li>
           <div class="collapsible-header">
-            <a>Outstandings</a>
+            <a>Add Pledges</a>
           </div>
           <div class="collapsible-body">
-                            <div class="col s12">
+                           <div class="row">
+                           <div class="col s12">
                     <div class="owl-carousel owl-theme">
                         <div class="item">
                             <h4>Outstandings 1</h4></div>
@@ -93,15 +94,8 @@
                             <h4>Outstandings 5</h4></div>
                     </div>
                 </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <a>Add Vows</a>
-          </div>
-          <div class="collapsible-body">
-                           <div class="row">
                             <div class="col s9">
+                            <div style="margin:50px"></div>
                     <select id="vow" class="browser-default vow-added">
                         <option>Please select a member</option>
                     </select>
@@ -120,6 +114,7 @@
 
                 </div>
                 <div class="input-field col s3">
+                <div style="margin:50px"></div>
                     <i class="medium material-icons" id="addVow">add</i>
                 </div>
                 </div>
@@ -159,30 +154,6 @@
         </li>
         <li>
       <div class="collapsible-header">
-      <a>Other Income</a>
-      </div>
-      <div class="collapsible-body">
-                <div class="input-field col s12">
-                    <input id="salvation" type="number" class="validate">
-                    <label for="salvation" style="color:#517aa0;">Salvation</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="rededication" type="number" class="validate">
-                    <label for="rededication" style="color:#517aa0;">Re-dedication</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="voice" type="number" class="validate">
-                    <label for="voice" style="color:#517aa0;">Voice Magazine</label>
-                </div>
-      </div>
-    </li>
-
-    </ul>
-       </div>
-    <div id="testc" class="col s12 test">
-       <ul class="collapsible-2" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header">
           <a>Expenses</a>
       </div>
       <div class="collapsible-body">
@@ -205,6 +176,29 @@
                 <div class="input-field col s12">
                     <input id="other_expenses" type="number" class="validate">
                     <label for="other_expenses" style="color:#517aa0;">Other_expenses</label>
+                </div>
+      </div>
+                 </li>
+    </ul>
+       </div>
+    <div id="testc" class="col s12 test">
+       <ul class="collapsible-2" data-collapsible="accordion">
+       <li>
+      <div class="collapsible-header">
+      <a>Other Income</a>
+      </div>
+      <div class="collapsible-body">
+                <div class="input-field col s12">
+                    <input id="salvation" type="number" class="validate">
+                    <label for="salvation" style="color:#517aa0;">Salvation</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="rededication" type="number" class="validate">
+                    <label for="rededication" style="color:#517aa0;">Re-dedication</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="voice" type="number" class="validate">
+                    <label for="voice" style="color:#517aa0;">Voice Magazine</label>
                 </div>
       </div>
     </li>
@@ -268,6 +262,7 @@
         for (var i = 0; i < member.length; i++) {
             $(".attend").append("<p>" + "<input type=\"checkbox\" " + "name=\"attendance\"" + "id=\"" + member[i].id + "\"/> <label for=\"" + member[i].id + "\">" + member[i].name + "</label></p>");
         }
+        $(".attend").append("<div style=\"margin-bottom:10px;\"></div>");
         
         for(var i = 0; i < member.length; i++){
             $("#vow").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
