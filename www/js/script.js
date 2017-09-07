@@ -1,7 +1,3 @@
-//if (typeof localStorage.getItem("token") !== "string") {
-//    window.location = "index.html";
-//
-//}
 //This is the response variable to store the json response object 
 var response = [];
 var chapterId = [];
@@ -10,16 +6,31 @@ var events = [];
 
 var chapters = JSON.parse(localStorage.getItem("chapters"));
 var token = JSON.parse(localStorage.getItem("token"));
+if(typeof localStorage.getItem("token") !== "string"){
+  var tokenName = "";
+  var tokenEmail = "";
+}else{
+    var tokenName = token[0].name;
+    var tokenEmail = token[0].email
+}
 
-$(".welcome-name").append(token[0].name)
-$(".user-view .name").append(token[0].name);
-$(".user-view .email").append(token[0].email);
+$(".welcome-name").append(tokenName);
+$(".user-view .name").append(tokenName);
+$(".user-view .email").append(tokenEmail);
 
 // Initialize collapse button
 $(".button-collapse").sideNav();
 
 //When a user clicks the send button this code grabs the information
 //submits to the server and return a json object via ajax request
+
+$("a#logout").click(function(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("chapters");
+    localStorage.removeItem("eventId");
+    
+    window.location = "index.html";
+});
 
 $("#send").click(function () {
     //assign variables to  email and password values
@@ -77,23 +88,4 @@ $("#send").click(function () {
     };
 });
 
-var data = {
-    "User": [
-        {
-            "id": "2",
-            "name": "Emmanuel Eze",
-            "email": "emereuwaonueze@gmail.com ",
-            "token": "561be8e62158778f0a78c07473b00bdd"
-        }
-    ],
-    "Chapters": [
-        {
-            "chapterId": "7",
-            "chName": "Surulere Rehoboth Chapter"
-        },
-        {
-            "chapterId": "11",
-            "chName": "Aguda Executive Chapter"
-        }
-    ]
-}
+

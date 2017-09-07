@@ -27,7 +27,7 @@
         <li><a class="waves-effect" href="view.html">View Report</a></li>
         <li><a class="waves-effect" href="approve.html">Approve Report<a></li>
         <li><a class="waves-effect" href="#!">Add Members</a></li>
-        <li><a class="waves-effect" href="index.html">Log Out</a></li>
+        <li><a id="logout" class="waves-effect">Log Out</a></li>
 
     </ul>
 
@@ -50,7 +50,6 @@
     <div id="testa" class="col s12">
         <div class="container">
                <div class="attend"></div>
-            
         </div>
     </div>
     
@@ -68,6 +67,10 @@
                     <input id="investment" type="number" class="validate">
                     <label for="investment" style="color:#517aa0;">Investment</label>
                 </div>
+                 <div class="input-field col s12">
+                    <input id="publication" type="number" class="validate">
+                    <label for="publication" style="color:#517aa0;">Publication</label>
+                </div>
                 <div class="input-field col s12">
                     <input id="other_income" type="number" class="validate">
                     <label for="other" style="color:#517aa0;">Other Income</label>
@@ -76,7 +79,7 @@
         </li>
         <li>
           <div class="collapsible-header">
-            <a>Add Pledges</a>
+            <a>Pledges</a>
           </div>
           <div class="collapsible-body">
                            <div class="row">
@@ -106,7 +109,7 @@
                         <label for="vow_amount" style="color:#517aa0;">Amount</label>
                     </div>
                     <p>Fulfullment Date:
-                        <input type="text" class="datepicker">
+                        <input name="pledge" type="text" class="datepicker">
                     </p>
                     <div id="vows">
                         <div style="margin-bottom:10px;"></div>
@@ -123,7 +126,7 @@
         </li>
             <li>
           <div class="collapsible-header">
-            <a>Add Donations</a>
+            <a>Donations</a>
           </div>
           <div class="collapsible-body">
                            <div class="row">
@@ -137,9 +140,6 @@
                         <input id="donation_amount" type="number" class="validate">
                         <label for="donation_amount" style="color:#517aa0;">Amount</label>
                     </div>
-                    <p>Fulfullment Date:
-                        <input type="text" class="datepicker">
-                    </p>
                     <div id="donations">
                         <div style="margin-bottom:10px;"></div>
                     </div>
@@ -170,10 +170,6 @@
                     <label for="hono" style="color:#517aa0;">Honorarium</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="publication" type="number" class="validate">
-                    <label for="publication" style="color:#517aa0;">Publication</label>
-                </div>
-                <div class="input-field col s12">
                     <input id="other_expenses" type="number" class="validate">
                     <label for="other_expenses" style="color:#517aa0;">Other_expenses</label>
                 </div>
@@ -182,27 +178,20 @@
     </ul>
        </div>
     <div id="testc" class="col s12 test">
-       <ul class="collapsible-2" data-collapsible="accordion">
-       <li>
-      <div class="collapsible-header">
-      <a>Other Income</a>
-      </div>
-      <div class="collapsible-body">
-                <div class="input-field col s12">
+    <div class="row">
+  <div class="input-field col s11">
                     <input id="salvation" type="number" class="validate">
                     <label for="salvation" style="color:#517aa0;">Salvation</label>
                 </div>
-                <div class="input-field col s12">
+                <div class="input-field col s11">
                     <input id="rededication" type="number" class="validate">
                     <label for="rededication" style="color:#517aa0;">Re-dedication</label>
                 </div>
-                <div class="input-field col s12">
+                <div class="input-field col s11">
                     <input id="voice" type="number" class="validate">
                     <label for="voice" style="color:#517aa0;">Voice Magazine</label>
                 </div>
-      </div>
-    </li>
-  </ul>
+        </div>
     </div>
     </form>
     </div>
@@ -262,7 +251,6 @@
         for (var i = 0; i < member.length; i++) {
             $(".attend").append("<p>" + "<input type=\"checkbox\" " + "name=\"attendance\"" + "id=\"" + member[i].id + "\"/> <label for=\"" + member[i].id + "\">" + member[i].name + "</label></p>");
         }
-        $(".attend").append("<div style=\"margin-bottom:10px;\"></div>");
         
         for(var i = 0; i < member.length; i++){
             $("#vow").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
@@ -343,6 +331,12 @@
             });
             var allVows = vows.join(", ");
             
+            var pledgeDate = [];
+            $.each($("input[name='pledge']"),function(){
+                pledgeDate.push($(this).val());
+            });
+            var allPledgeDate = pledgeDate.join(", ");
+            
             var donations = [];
             $.each($("input[id='donation_amount']"),function(){
                 donations.push($(this).val());
@@ -390,7 +384,7 @@
                     "amount":allVows,
                     "type":"Bus levy",
                     "project_id":1,
-                    "expected_fulfil_date":"December"  
+                    "expected_fulfil_date":allPledgeDate  
                 },
                 "pledges_paid":{
                     "pledge_id":1,
@@ -409,6 +403,11 @@
                 "other_expenses":other_expenses
             }
             console.log(financials);
+            
+//            if(){
+//                alert("Some fields missing");
+//            }else{}
+            
             $.when(
             // Deferred object, ajax request 
             $.ajax({
@@ -443,7 +442,7 @@
             function errorFn(xhr, status, strErr) {
                 alert("Something prevented Attendance from inserting");
             };
-*/
+*/       
         });
 
         
@@ -454,14 +453,22 @@
             //var j = 0;
             $("#addVow").click(function (e) {
                 e.preventDefault();
-                $("#vows").prepend("<p class=\"vow\" "+">Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
+                $("#vows").prepend("<p class=\"vow\" "+">Fulfullment Date:<input name=\"pledge\" type=\"text\" class=\"datepick\"></p>");
                 $("#vows").prepend("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"vow_amount\" type=\"number\" class=\"validate\"><label for=\"vow_amount\" style=\"color:#517aa0;\">Amount</label></div>");
                 $("#vows").prepend("<select id=\"vow-added\" class=\"browser-default vow-added\"><option>Please select a member</option></select>");
                 
                 for(var i = 0; i < member.length; i++){
                 $("#vow-added").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
 
-                };    
+                };  
+                 $('.datepick').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
             });
         });
         
@@ -469,14 +476,14 @@
             //var j = 0;
             $("#addDonation").click(function (e) {
                 e.preventDefault();
-                $("#donations").prepend("<p class=\"vow\" "+">Fulfullment Date:<input type=\"text\" class=\"datepicker\"></p>");
                 $("#donations").prepend("<div class=\"input-field\"><i class=\"material-icons prefix\">monetization_on</i><input id=\"donation_amount\" type=\"number\" class=\"validate\"><label for=\"donation_amount\" style=\"color:#517aa0;\">Amount</label></div>");
                 $("#donations").prepend("<select id=\"donation-added\"  class=\"browser-default donation-added\"><option>Please select a member</option></select>");
                 
                 for(var i = 0; i < member.length; i++){
                 $("#donation-added").append("<option value=\"" + member[i].id + "\">" + member[i].name + "</option>");   
 
-                };    
+                };
+                
             });
         });
 

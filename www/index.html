@@ -42,11 +42,13 @@
     </form>
   </div>
   </div>
-
+  
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/materialize.min.js"></script>
   <script src="js/script.js"></script>
     <script>
-
+    if (typeof localStorage.getItem("token") == "string") {
+        window.location = "chapter.html";
+    }
  </script>
 </html>
