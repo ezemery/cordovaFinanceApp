@@ -1,0 +1,12 @@
+{
+    "name": "com.example.ogbako",
+    "displayName": "ogbako",
+    "version": "1.0.0",
+    "description": "Ogbako is a finance application for collection of donations, pledges and attendance at church gatherings",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "emereuwaonueze@gmail.com",
+    "license": "Apache-2.0"
+}
