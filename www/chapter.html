@@ -9,17 +9,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+    if(!localStorage.getItem("token")){
+        location.href="index.html";
+    }
+    </script>
 </head>
 
 <body class="home">
     <div class="container">
         <div class="middle">
-           <div> 
-           <h3>Welcome</h3>
-           <h5 class="welcome-name"></h5>
-           </div>
+            <div>
+                <h3>Welcome</h3>
+                <h5 class="welcome-name"></h5>
+            </div>
             <div class="col s12">
-            <select id="select" class="browser-default">
+                <select id="select" class="browser-default">
                 <option>Please select a chapter</option>
             </select>
             </div>
@@ -31,58 +36,101 @@
     <script src="js/materialize.min.js"></script>
     <script src="js/script.js"></script>
     <script>
+        $("document").ready(function () {
 
-        $("document").ready(function(){
-            
-            for(var i = 0; i < chapters.length; i++){
-            $("#select").append("<option value=\"" + chapters[i].chapterId + "\">" + chapters[i].chName + "</option>");   
-        
+            for (var i = 0; i < chapters.length; i++) {
+                $("#select").append("<option value=\"" + chapters[i].chapterId + "\">" + chapters[i].chName +
+                    "</option>");
+
             };
-            
-        $("#go").click(function(){
-            
-            var value = $("select").val();
-            localStorage.setItem("eventId",value);
-            
-            var data = {
-                "chapterId":value
-            }
-             $(document).ajaxStart(function () {
-            $("#go").addClass("loading");
-            console.log("Ajax Request is Starting");
-        });
-        // Ajax stop global function
-        $(document).ajaxStop(function () {
-            $("#go").removeClass("loading");
-            console.log("Ajax Request has ended");
-        });
-            
-            $.ajax({
-            type: "POST",
-            contentType: 'application/json; charset=UTF-8',
-            url: "http://ogbako.relserve.com/api/v1/getMembers",
-            data:JSON.stringify(data),
-            processData: true,
-            dataType: "json"
-        }).done(successFn).fail(errorFn);
-        //This function check the response from the server and looks 
-        //for a token field, if token id found it stores the token in
-        //local storage else it returns an error.      
-        function successFn(result) {
-            for (var elm in result) {
-                    members.push(result[elm]);
+
+            $("#go").click(function () {
+
+                var memberValue = $("select").val();
+                var eventValue = $("select").val();
+
+                var memberData = {
+                    "chapterId": memberValue
                 }
-            localStorage.setItem('chapterMembers', JSON.stringify(members[0]));
-            location.href = "home.html";
-        };
-        //if there is an error in the ajax request display the error
-        function errorFn(xhr, status, strErr) {
-            alert("Something went wrong, maybe server error");
-        };
-            
-        });
-            
-        
+                var eventData = {
+                        "chapterId":eventValue
+                        //Gets the event for the meeting ie chapter meeting etc
+                    }
+                $(document).ajaxStart(function () {
+                    $("#go").addClass("loading");
+                    console.log("Ajax Request is Starting");
+                });
+                // Ajax stop global function
+                $(document).ajaxStop(function () {
+                    $("#go").removeClass("loading");
+                    console.log("Ajax Request has ended");
+                });
+
+                $.when(
+                    // Deferred object, ajax request 
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=UTF-8',
+                        url: "http://ogbako.relserve.com/api/v1/getEvents",
+                        data: JSON.stringify(eventData),
+                        processData: true,
+                        dataType: "json"
+                    }).done(eventSuccessFn).fail(eventErrorFn),
+                    // Deferred object, ajax request
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=UTF-8',
+                        url: "http://ogbako.relserve.com/api/v1/getMembers",
+                        data: JSON.stringify(memberData),
+                        processData: true,
+                        dataType: "json"
+                    }).done(memberSuccessFn).fail(memberErrorFn)
+
+
+
+                ).then(allPassed, someFailed);
+
+                function allPassed(result) {
+                    location.href = "home.html";
+                };
+
+                function someFailed(xhr, status, strErr) {
+                    alert(strErr);
+                };
+
+                //This function check the response from the server and looks 
+                //for a token field, if token id found it stores the token in
+                //local storage else it returns an error.      
+                function memberSuccessFn(result) {
+                    for (var elm in result) {
+                        members.push(result[elm]);
+                    }
+                    localStorage.setItem('chapterMembers', JSON.stringify(members[0]));
+                    location.href = "home.html";
+                }
+                //if there is an error in the ajax request display the error
+                function memberErrorFn(xhr, status, strErr) {
+                    alert("Something went wrong, maybe server error");
+                }
+
+                //This function check the response from the server and looks 
+                    //for a token field, if token id found it stores the token in
+                    //local storage else it returns an error.      
+                    function eventSuccessFn(result) {
+                        for (var elm in result) {
+                            events.push(result[elm]);
+                        }
+                        //Push the ajax result to an array and store in local storage for latter access in files
+                        localStorage.setItem('theEvents', JSON.stringify(events[0]));
+                    };
+                    //if there is an error in the ajax request display the error
+                    function eventErrorFn(xhr, status, strErr) {
+                        alert("Something went wrong, Could not retrieve Events");
+                    };
+            });
+
+
         });
     </script>
 </body>

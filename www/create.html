@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/style.css">
-
+<script>
+    if (!localStorage.getItem("token")) {
+        location.href = "index.html";
+    }
+</script>
 </head>
 
 <body>
@@ -268,32 +272,7 @@
         /*
         Begin Pulling Data for Events
         */
-        var eventData = {
-            "chapterId": localStorage.getItem("eventId")
-            //Gets the event for the meeting ie chapter meeting etc
-        }
-        $.ajax({
-            type: "POST",
-            contentType: 'application/json; charset=UTF-8',
-            url: "http://ogbako.relserve.com/api/v1/getEvents",
-            data: JSON.stringify(eventData),
-            processData: true,
-            dataType: "json"
-        }).done(successFn).fail(errorFn);
-        //This function check the response from the server and looks 
-        //for a token field, if token id found it stores the token in
-        //local storage else it returns an error.      
-        function successFn(result) {
-            for (var elm in result) {
-                events.push(result[elm]);
-            }
-            //Push the ajax result to an array and store in local storage for latter access in files
-            localStorage.setItem('theEvents', JSON.stringify(events[0]));
-        };
-        //if there is an error in the ajax request display the error
-        function errorFn(xhr, status, strErr) {
-            alert("Something went wrong, Could not retrieve Events");
-        };
+    
 
         var localEvents = JSON.parse(localStorage.getItem("theEvents"));
 

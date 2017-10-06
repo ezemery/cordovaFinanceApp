@@ -9,6 +9,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        if (!localStorage.getItem("token")) {
+            location.href = "index.html";
+        }
+    </script>
 </head>
 
 <body class="home">
