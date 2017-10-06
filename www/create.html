@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/style.css">
-<script>
-    if (!localStorage.getItem("token")) {
-        location.href = "index.html";
-    }
-</script>
+    <script>
+        if (!localStorage.getItem("token")) {
+            location.href = "index.html";
+        }
+    </script>
 </head>
 
 <body>
@@ -408,6 +408,8 @@
             ).then(allPassed, someFailed);            
             function allPassed(result) {
                 alert("Saved was successful");
+               window.location.reload(true);
+
             };
             function someFailed(xhr, status, strErr) {
                 alert(strErr);
