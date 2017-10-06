@@ -25,14 +25,7 @@ $(".button-collapse").sideNav();
 //submits to the server and return a json object via ajax request
 
 $("a#logout").click(function(){
-<<<<<<< HEAD
     localStorage.clear();
-=======
-    localStorage.removeItem("token");
-    localStorage.removeItem("chapters");
-    localStorage.removeItem("eventId");
-    
->>>>>>> 13d23635c578c4421f33a24bff0d2dc32aeacf08
     window.location = "index.html";
 });
 
@@ -63,11 +56,7 @@ $("#send").click(function () {
         $.ajax({
             type: "POST",
             contentType: 'application/json; charset=UTF-8',
-<<<<<<< HEAD
             url: "http://ogbako.relserve.com/api/v1/login",
-=======
-            url: "http://192.168.0.43/api/v1/login",
->>>>>>> 13d23635c578c4421f33a24bff0d2dc32aeacf08
             data: JSON.stringify(data),
             processData: true,
             dataType: "json"
